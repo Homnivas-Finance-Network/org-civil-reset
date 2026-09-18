@@ -8,7 +8,7 @@
 
 set -euo pipefail
 
-echo "== Homnivas Card PWA — backend setup =="
+echo "== Homnivas Civil Reset — backend setup =="
 echo
 
 if ! command -v node >/dev/null 2>&1; then
@@ -57,9 +57,9 @@ echo "Now paste your Cloudinary API secret when prompted:"
 npx wrangler secret put CLOUDINARY_API_SECRET
 
 echo
-read -rp "6/6 — Public URL where your FRONTEND will be hosted (e.g. https://apply.homnivas.com): " PUBLIC_URL
+read -rp "6/6 — Public URL where your FRONTEND will be hosted (e.g. https://app.homnivas.com): " PUBLIC_URL
 ESCAPED_URL=$(printf '%s\n' "$PUBLIC_URL" | sed 's/[&/\]/\\&/g')
-sed -i.bak "s#https://apply.homnivas.com#${ESCAPED_URL}#" wrangler.toml
+sed -i.bak "s#https://app.homnivas.com#${ESCAPED_URL}#" wrangler.toml
 rm -f wrangler.toml.bak
 
 echo
