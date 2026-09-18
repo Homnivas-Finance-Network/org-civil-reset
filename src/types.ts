@@ -4,4 +4,5 @@ export type Bindings = {
   CLOUDINARY_API_KEY: string;
   CLOUDINARY_API_SECRET: string;
   PUBLIC_APP_URL: string;
+  ALLOWED_ORIGINS: string;
 };
