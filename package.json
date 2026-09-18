@@ -6,10 +6,10 @@
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
-    "ci:deploy": "wrangler d1 execute homnivas_card --remote --file=./migrations/0001_init.sql && wrangler deploy",
-    "db:create": "wrangler d1 create homnivas_card",
-    "db:migrate:local": "wrangler d1 execute homnivas_card --local --file=./migrations/0001_init.sql",
-    "db:migrate:remote": "wrangler d1 execute homnivas_card --remote --file=./migrations/0001_init.sql",
+    "ci:deploy": "wrangler d1 execute homnivas_civil_reset --remote --file=./migrations/0001_init.sql && wrangler deploy",
+    "db:create": "wrangler d1 create homnivas_civil_reset",
+    "db:migrate:local": "wrangler d1 execute homnivas_civil_reset --local --file=./migrations/0001_init.sql",
+    "db:migrate:remote": "wrangler d1 execute homnivas_civil_reset --remote --file=./migrations/0001_init.sql",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
