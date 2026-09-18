@@ -5,8 +5,13 @@ import { renderApplication } from './screens/application';
 import { renderAgreement } from './screens/agreement';
 import { renderStatus } from './screens/status';
 import { renderError } from './screens/error';
+import { renderAdminSetup } from './screens/adminSetup';
+import { renderAdminLogin } from './screens/adminLogin';
+import { renderAdminDashboard } from './screens/adminDashboard';
 import { getSessionToken } from './state';
+import { getAdminToken } from './adminState';
 import { api } from './api';
+import { adminApi } from './adminApi';
 import { t } from './i18n';
 
 if ('serviceWorker' in navigator) {
@@ -17,6 +22,23 @@ if ('serviceWorker' in navigator) {
   });
 }
 
+async function bootAdmin(root: HTMLElement): Promise<void> {
+  if (getAdminToken()) {
+    renderAdminDashboard(root);
+    return;
+  }
+  try {
+    const { anyAgents } = await adminApi.checkAnyAgents();
+    if (anyAgents) {
+      renderAdminLogin(root);
+    } else {
+      renderAdminSetup(root);
+    }
+  } catch {
+    renderError(root, 'Admin panel load nahi hua. Backend URL check karein.');
+  }
+}
+
 async function boot(): Promise<void> {
   const root = document.getElementById('app');
   if (!root) return;
@@ -25,6 +47,11 @@ async function boot(): Promise<void> {
 
   if (route.name === 'landing') {
     await renderWelcome(root, route.accessToken);
+    return;
+  }
+
+  if (route.name === 'admin') {
+    await bootAdmin(root);
     return;
   }
 

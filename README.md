@@ -53,17 +53,24 @@ npm run deploy
 Either way, deploy prints your live API URL — something like
 `https://homnivas-card-pwa.<your-subdomain>.workers.dev`. You'll need it for Part 2.
 
-### Bootstrap your first agent
+### Set up your first agent — no curl, no Postman
 
-```
-curl -X POST https://<your-worker-url>/api/admin/bootstrap-agent \
-  -H "Content-Type: application/json" \
-  -d '{"name":"Your Name","phone":"9800000000","pin":"1234"}'
-```
+Once the frontend is deployed (Part 2 below), just open `https://<your-frontend-url>/admin`
+in a browser. It automatically detects whether any agent exists yet:
 
-**Then delete or comment out the `bootstrap-agent` route in `src/routes/admin.ts`
-and redeploy (`npm run deploy`).** It deliberately has no auth — it's the only way
-to create agent #1 before any credentials exist — and it's the one thing in this
+- **No agents yet** → shows a one-time setup form (name, phone, PIN) → creates
+  agent #1 and drops you at the login screen.
+- **Agents already exist** → shows the login form directly.
+
+After logging in, the dashboard lets you create a lead (name + phone), get a
+ready-to-tap **WhatsApp Par Bhejein** button with the link pre-filled, and see/update
+every lead's status from a dropdown — all from the browser, no API calls by hand.
+
+**Once your real agents are set up, delete or comment out the `bootstrap-agent`
+route in `src/routes/admin.ts`** (the `/exists` and `/login` routes are safe to
+leave — they require real credentials or reveal nothing sensitive). The
+bootstrap route deliberately has no auth — it's the only way to create agent #1
+before any credentials exist — and it's the one thing in this
 codebase that's an open door if left in.
 
 ---
@@ -79,7 +86,7 @@ npm run build
 ```
 
 This produces `frontend/dist/` — a handful of static files (HTML/CSS/JS + PWA
-manifest + service worker), 4.9 kB of JS gzipped.
+manifest + service worker), 6.3 kB of JS gzipped, including the `/admin` panel.
 
 ### Deploying dist/ — this IS a real drag-and-drop zip upload
 
@@ -143,3 +150,6 @@ re-uploading `dist/` by hand:
 Full agent → WhatsApp handoff → magic-link → application form → camera KYC
 capture → digital agreement (scroll-gated consent + signature pad) → live status
 tracker, backend and frontend both, tested end to end where the sandbox allows it.
+An `/admin` panel (setup → login → create-lead-with-WhatsApp-button → status
+management) replaces raw API calls for everyday agent use — Postman/curl is only
+ever needed if you're debugging, not for normal operation.

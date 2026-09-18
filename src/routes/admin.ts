@@ -21,6 +21,16 @@ const VALID_STATUSES = [
 ] as const;
 
 /**
+ * Public, no auth on purpose — lets the admin frontend decide whether to
+ * show a "create your first agent" setup screen or a login screen,
+ * without needing credentials to ask the question.
+ */
+admin.get('/exists', async (c) => {
+  const existing = await c.env.DB.prepare('SELECT id FROM agents LIMIT 1').first();
+  return c.json({ anyAgents: !!existing });
+});
+
+/**
  * One-time bootstrap for the very first agent. Delete or comment out this
  * route once real agents exist — it deliberately has no auth, because
  * nothing else exists yet to authenticate against, and it refuses to run
