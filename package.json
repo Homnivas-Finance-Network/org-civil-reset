@@ -1,0 +1,24 @@
+{
+  "name": "homnivas-card-pwa",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "ci:deploy": "wrangler d1 execute homnivas_card --remote --file=./migrations/0001_init.sql && wrangler deploy",
+    "db:create": "wrangler d1 create homnivas_card",
+    "db:migrate:local": "wrangler d1 execute homnivas_card --local --file=./migrations/0001_init.sql",
+    "db:migrate:remote": "wrangler d1 execute homnivas_card --remote --file=./migrations/0001_init.sql",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "hono": "^4.6.9",
+    "pdf-lib": "^1.17.1"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260917.1",
+    "typescript": "^5.6.3",
+    "wrangler": "^4.134.0"
+  }
+}

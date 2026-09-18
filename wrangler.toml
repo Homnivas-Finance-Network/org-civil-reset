@@ -1,0 +1,17 @@
+name = "homnivas-card-pwa"
+main = "src/index.ts"
+compatibility_date = "2026-09-01"
+compatibility_flags = ["nodejs_compat"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "homnivas_card"
+database_id = "REPLACE_AFTER_RUNNING_npm_run_db:create"
+
+[vars]
+CLOUDINARY_CLOUD_NAME = "replace_with_your_cloud_name"
+PUBLIC_APP_URL = "https://apply.homnivas.com"
+
+# Secrets — never put these in this file. Set with:
+#   wrangler secret put CLOUDINARY_API_KEY
+#   wrangler secret put CLOUDINARY_API_SECRET
