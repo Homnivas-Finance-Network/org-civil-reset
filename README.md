@@ -1,4 +1,4 @@
-# Homnivas Card PWA
+# Homnivas Civil Reset
 
 Cloudflare Workers (Hono + D1) backend + a Vite/TypeScript PWA frontend. No card
 required anywhere in this stack, no Firebase, no R2.
