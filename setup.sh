@@ -25,7 +25,7 @@ npx wrangler login
 
 echo
 echo "3/6 — Creating your D1 database..."
-CREATE_OUTPUT=$(npx wrangler d1 create homnivas_card)
+CREATE_OUTPUT=$(npx wrangler d1 create homnivas_civil_reset)
 echo "$CREATE_OUTPUT"
 
 DB_ID=$(echo "$CREATE_OUTPUT" | grep -oE '"?database_id"?[[:space:]]*[:=][[:space:]]*"[a-f0-9-]{36}"' | grep -oE '[a-f0-9-]{36}' || true)
@@ -43,7 +43,7 @@ echo "wrangler.toml updated with database_id: $DB_ID"
 
 echo
 echo "4/6 — Running the schema migration (remote)..."
-npx wrangler d1 execute homnivas_card --remote --file=./migrations/0001_init.sql
+npx wrangler d1 execute homnivas_civil_reset --remote --file=./migrations/0001_init.sql
 
 echo
 echo "5/6 — Cloudinary credentials."
