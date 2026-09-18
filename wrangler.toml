@@ -11,6 +11,7 @@ database_id = "777f50a8-3017-498f-a3e6-5b3ad492b74e"
 [vars]
 CLOUDINARY_CLOUD_NAME = "xbebhkge"
 PUBLIC_APP_URL = "https://app.homnivas.space"
+ALLOWED_ORIGINS = "https://app.homnivas.com"
 
 # Secrets — never put these in this file. Set with:
 #   wrangler secret put CLOUDINARY_API_KEY
