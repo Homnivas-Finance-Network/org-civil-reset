@@ -5,12 +5,12 @@ compatibility_flags = ["nodejs_compat"]
 
 [[d1_databases]]
 binding = "DB"
-database_name = "homnivas_card"
-database_id = "REPLACE_AFTER_RUNNING_npm_run_db:create"
+database_name = "homnivas_civil_reset"
+database_id = "777f50a8-3017-498f-a3e6-5b3ad492b74e"
 
 [vars]
-CLOUDINARY_CLOUD_NAME = "replace_with_your_cloud_name"
-PUBLIC_APP_URL = "https://apply.homnivas.com"
+CLOUDINARY_CLOUD_NAME = "xbebhkge"
+PUBLIC_APP_URL = "https://app.homnivas.space"
 
 # Secrets — never put these in this file. Set with:
 #   wrangler secret put CLOUDINARY_API_KEY
